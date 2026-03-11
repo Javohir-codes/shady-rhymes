@@ -1,0 +1,16 @@
+{% load static %}
+<h2>All Comments</h2>
+{% for comment in comments %}
+<div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
+    {% if comment.avatar %}
+        <img src="{{ comment.avatar }}" width="50" height="50">
+    {% endif %}
+    <strong>{{ comment.name }}</strong>
+    <p>{{ comment.text }}</p>
+    <small>{{ comment.created_at }}</small>
+</div>
+{% empty %}
+<p>No comments yet.</p>
+{% endfor %}
+
+<a href="{% url 'add_comment' %}">Add Comment</a>

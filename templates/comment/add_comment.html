@@ -1,0 +1,10 @@
+{% load static %}
+<h2>Leave a Comment</h2>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Your name">
+    <input type="text" name="avatar" placeholder="Avatar URL">
+    <textarea name="text" placeholder="Your comment"></textarea>
+    <button type="submit">Send</button>
+</form>
+<a href="{% url 'view_comments' %}">See all comments</a>

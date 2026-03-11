@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import add_comment, product_comments
+from . import views
 
 urlpatterns = [
-    path('product/<int:product_id>/comments/', product_comments, name='product_comments'),
-    path('product/<int:product_id>/comment/add/', add_comment, name='add_comment'),
+    path('add/', views.add_comment, name='add_comment'),
+    path('all/', views.view_comments, name='view_comments'),
 ]

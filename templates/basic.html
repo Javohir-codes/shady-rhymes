@@ -1,0 +1,16 @@
+{% for comment in comments %}
+<div class="comment-block">
+    {% if comment.avatar %}
+        <img src="{{ comment.avatar }}" alt="Avatar" class="comment-avatar">
+    {% else %}
+        <i class="fa-solid fa-user fa-2xl comment-avatar" style="color:#63E6BE;"></i>
+    {% endif %}
+    <div class="comment-content">
+        <h5>{{ comment.name }}</h5>
+        <p>{{ comment.text }}</p>
+        <small>{{ comment.created_at }}</small>
+    </div>
+</div>
+{% empty %}
+<p>No comments yet. Be the first to comment!</p>
+{% endfor %}

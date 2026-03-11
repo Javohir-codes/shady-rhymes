@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,8 +22,8 @@
                 <h3 style="width: 150px; color: white; font-size: 24px;">shady rhymes</h3>
             </div>
             <div style="width: 370px; display: flex; justify-content: space-between; align-items: center;">
-                <a href="#" style="color: white; text-decoration: none; font-size: 18px;">Feedbacks</a>
-                <a href="#" style="color: white; text-decoration: none; font-size: 18px;">Shop</a>
+                <a href="{% url 'add_comment' %}" style="color: white; text-decoration: none; font-size: 18px;">Feedbacks</a>
+                <a href="{% url 'create_order' %}" style="color: white; text-decoration: none; font-size: 18px;">Shop</a>
                 <a href="#" style="color: white; text-decoration: none; font-size: 18px;">About Us</a>
                 <a href="#" style="color: white; text-decoration: none; font-size: 18px;">Contact</a>
             </div>
@@ -114,42 +115,83 @@
             </div>
         </section>
         <section style="padding: 50px 80px; background-color: #F6F6F6; margin: 100px 0px;">
-            <h3 style="font-size: 36px; text-align: center; margin: auto; color: #564E4E; padding-bottom: 50px;">What they say about our services</h3>
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 50px;">
-                <div style="background-color: inherit; display: flex; justify-content: space-between; align-items: start; flex-direction: column; width: 440px; height: 280px;">
-                    <h3 style="font-size: 24px; color: #564E4E;">Best planning service</h3>
-                    <p style="font-size: 18px; color: #564E4E; width: 440px;">I had fantastic experience at shady rhymes with pax planner, shady rhymes was so helpful and friendly and went above and beyond to help me configure my perfect walk in wardobe room.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <img src="" alt="comment_avatar">
-                        <div>
-                            <h4 style="font-size: 18px; color: #564E4E;">John doe</h4>
-                            <p style="font-size: 14px; color: #564E4E;">Project manager of cupalo</p>
+    
+            <h3 style="font-size: 36px; text-align: center; margin: auto; color: #564E4E; padding-bottom: 50px;">
+                What they say about our services
+            </h3>
+        
+            <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+        
+                {% for comment in comments %}
+        
+                <div style="
+                    background-color: white;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    width: 420px;
+                    min-height: 260px;
+                    padding: 25px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                ">
+        
+                    <h3 style="font-size: 20px; color: #564E4E;">
+                        {{ comment.name }}
+                    </h3>
+        
+                    <p style="font-size: 16px; color: #564E4E; margin-top: 10px;">
+                        {{ comment.text }}
+                    </p>
+        
+                    <div style="display: flex; align-items: center; margin-top: 20px; gap: 12px;">
+        
+                        {% if comment.avatar %}
+                        <img 
+                            src="{{ comment.avatar }}" 
+                            alt="avatar"
+                            style="width:45px;height:45px;border-radius:50%;object-fit:cover;"
+                        >
+                        {% else %}
+                        <div style="
+                            width:45px;
+                            height:45px;
+                            border-radius:50%;
+                            background:#63E6BE;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            color:white;
+                            font-weight:bold;
+                        ">
+                            {{ comment.name|slice:":1" }}
                         </div>
-                    </div>
-                </div>
-                <div style="background-color: inherit; display: flex; justify-content: space-between; align-items: start; flex-direction: column; width: 440px; height: 280px;">
-                    <h3 style="font-size: 24px; color: #564E4E;">Flexible and reliable</h3>
-                    <p style="font-size: 18px; color: #564E4E; width: 440px;">Terrific work from beginning to end can work any angle from minimal help to complete project handling professional without a doubt!  Love!</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <img src="" alt="comment_avatar">
+                        {% endif %}
+        
                         <div>
-                            <h4 style="font-size: 18px; color: #564E4E;">Woods Moniq</h4>
-                            <p style="font-size: 14px; color: #564E4E;">Freelancer</p>
+                            <h4 style="font-size:16px;color:#564E4E;margin:0;">
+                                {{ comment.name }}
+                            </h4>
+        
+                            <p style="font-size:13px;color:#888;margin:0;">
+                                {{ comment.created_at|date:"d M Y" }}
+                            </p>
                         </div>
+        
                     </div>
+        
                 </div>
-                <div style="background-color: inherit; display: flex; justify-content: space-between; align-items: start; flex-direction: column; width: 440px; height: 280px;">
-                    <h3 style="font-size: 24px; color: #564E4E;">solution innovative</h3>
-                    <p style="font-size: 18px; color: #564E4E; width: 440px;">"I loved working with Darla shady rhymes for about 2 years and highly recommend anyone looking for an interior designer agency who brings creativity but designs something that fits YOU and your style.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <img src="" alt="comment_avatar">
-                        <div>
-                            <h4 style="font-size: 18px; color: #564E4E;">Denis Rara</h4>
-                            <p style="font-size: 14px; color: #564E4E;">Architect at BPPLU</p>
-                        </div>
-                    </div>
-                </div>
+        
+                {% empty %}
+        
+                <p style="text-align:center; color:#777;">
+                    No comments yet. Be the first to comment.
+                </p>
+        
+                {% endfor %}
+        
             </div>
+        
         </section>
         <section style="display: flex; justify-content: space-between; align-items: center; margin: 0px 80px;">
             <div>
