@@ -1,37 +1,20 @@
 from django.shortcuts import render, redirect
-from .models import Comment, Product
+from .models import Comment
+
 
 def add_comment(request):
+
     if request.method == "POST":
-        name = request.POST.get("name", "Anonymous")
-        avatar = request.POST.get("avatar", "")
+        name = request.POST.get("name")
         text = request.POST.get("text")
+        avatar = request.POST.get("avatar")
 
-        if text:
-            Comment.objects.create(
-                name=name,
-                avatar=avatar,
-                text=text
-            )
+        Comment.objects.create(
+            name=name,
+            text=text,
+            avatar=avatar
+        )
 
-        return redirect('home')
+        return redirect("/")
 
-    return render(request, 'comment/add_comment.html')
-
-
-def view_comments(request):
-    comments = Comment.objects.all().order_by('-created_at')
-    return render(request, 'comment/view_comments.html', {
-        'comments': comments
-    })
-
-def home(request):
-    products = Product.objects.all()
-    comments = Comment.objects.all().order_by('-created_at')
-
-    context = {
-        "products": products,
-        "comments": comments
-    }
-
-    return render(request, "core/home.html", context)
+    return render(request, "comment/add_comment.html")

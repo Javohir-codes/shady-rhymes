@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import Product
+from apps.comment.models import Comment
 
 def home(request):
-    products = Product.objects.all()
-    context = {
-        'products': products
-    }
-    return render(request, 'core/home.html', context)
+    comments = Comment.objects.all().order_by("-created_at")
+
+    return render(request, "core/home.html", {
+        "comments": comments
+    })

@@ -1,5 +1,4 @@
 from django.db import models
-from apps.core.models import Product
 
 class Comment(models.Model):
     name = models.CharField(max_length=100)
