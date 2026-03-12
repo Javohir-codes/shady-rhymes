@@ -21,11 +21,12 @@
                 <img src="" alt="">
                 <h3 style="width: 150px; color: white; font-size: 24px;">shady rhymes</h3>
             </div>
-            <div style="width: 370px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="width: 480px; display: flex; justify-content: space-between; align-items: center;">
                 <a href="{% url 'add_comment' %}" style="color: white; text-decoration: none; font-size: 18px;">Feedbacks</a>
                 <a href="{% url 'create_order' %}" style="color: white; text-decoration: none; font-size: 18px;">Shop</a>
                 <a href="#" style="color: white; text-decoration: none; font-size: 18px;">About Us</a>
                 <a href="#" style="color: white; text-decoration: none; font-size: 18px;">Contact</a>
+                <a href="/comments/feedback/" style="color: white; text-decoration: none; font-size: 18px;">See all feedback</a>
             </div>
             <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(255, 255, 255);"></i>
         </nav>
@@ -120,7 +121,7 @@
                 What they say about our services
             </h3>
         
-            <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; align-items: center;">
         
                 {% for comment in comments %}
         

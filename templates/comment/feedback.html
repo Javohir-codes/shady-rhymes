@@ -1,16 +1,23 @@
-{% load static %}
-<h2>All Comments</h2>
+<h2>All Feedback</h2>
+
+<div style="display:flex; flex-direction:column; gap:20px;">
+
 {% for comment in comments %}
-<div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
-    {% if comment.avatar %}
-        <img src="{{ comment.avatar }}" width="50" height="50">
-    {% endif %}
-    <strong>{{ comment.name }}</strong>
-    <p>{{ comment.text }}</p>
-    <small>{{ comment.created_at }}</small>
+
+<div style="border:1px solid #ccc; padding:20px; width:400px;">
+
+<h3>{{ comment.name }}</h3>
+
+<p>{{ comment.text }}</p>
+
+{% if comment.avatar %}
+<img src="{{ comment.avatar }}" width="60">
+{% endif %}
+
+<p>{{ comment.created_at }}</p>
+
 </div>
-{% empty %}
-<p>No comments yet.</p>
+
 {% endfor %}
 
-<a href="{% url 'add_comment' %}">Add Comment</a>
+</div>

@@ -18,3 +18,12 @@ def add_comment(request):
         return redirect("/")
 
     return render(request, "comment/add_comment.html")
+
+
+def feedback(request):
+
+    comments = Comment.objects.all().order_by("-created_at")
+
+    return render(request, "comment/feedback.html", {
+        "comments": comments
+    })
