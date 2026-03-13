@@ -1,21 +1,23 @@
-from django.shortcuts import render, redirect
-from .forms import OrderForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Order
+from apps.core.models import Product
 
 
-def create_order(request):
+def create_order(request, product_id):
+
+    product = get_object_or_404(Product, id=product_id)
 
     if request.method == "POST":
-        form = OrderForm(request.POST)
 
-        if form.is_valid():
-            form.save()
-            return redirect('order_success')
+        name = request.POST.get("name")
+        phone = request.POST.get("phone")
 
-    else:
-        form = OrderForm()
+        Order.objects.create(
+            product=product,
+            name=name,
+            phone=phone
+        )
 
-    return render(request, "orders/order_form.html", {"form": form})
+        return redirect("/")
 
-
-def order_success(request):
-    return render(request, "orders/success.html")
+    return render(request, "orders/order.html", {"product": product})

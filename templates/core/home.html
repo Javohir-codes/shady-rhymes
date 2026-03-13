@@ -27,12 +27,14 @@
             </div>
             <div style="width: 480px; display: flex; justify-content: space-between; align-items: center;">
                 <a href="{% url 'add_comment' %}" style="color: white; text-decoration: none; font-size: 18px;">Feedbacks</a>
-                <a href="{% url 'create_order' %}" style="color: white; text-decoration: none; font-size: 18px;">Shop</a>
+                <a href="#" style="color: white; text-decoration: none; font-size: 18px;">Shop</a>
                 <a href="#" style="color: white; text-decoration: none; font-size: 18px;">About Us</a>
                 <a href="#" style="color: white; text-decoration: none; font-size: 18px;">Contact</a>
                 <a href="/comments/feedback/" style="color: white; text-decoration: none; font-size: 18px;">See all feedback</a>
             </div>
-            <i class="fa-solid fa-bag-shopping fa-xl" style="color: rgb(255, 255, 255);"></i>
+            <a href="{% url 'create_order' %}">
+                <i class="fa-solid fa-bag-shopping fa-xl" style="color:white;"></i>
+            </a>
         </nav>
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <h1 style="font-size: 48px; color: white; margin: auto; width: 734px; text-align: center; margin-top: 100px;">Make Your Interior More Minimaistic & Modern</h1>
@@ -93,31 +95,23 @@
             <h3 style="font-size: 36px; color: #564E4E; margin: 40px 0px; font-weight: 500; width: 100%; text-align: center;">
             Featured Product
             </h3>
-            
             {% for product in products %}
+
+            <div>
             
-            <div style="width: 325px; height: 400px; display: flex; justify-content: space-between; align-items: start; flex-direction: column; background-color: #F6F6F6;">
+            <img src="{{ product.image.url }}">
             
-            <img src="{{ product.image }}" alt="Image of product" style="width: 325px; height: 300px;">
+            <h4>{{ product.name }}</h4>
+            <h4>{{ product.category }}</h4>
+            <h4>${{ product.price }}</h4>
             
-            <h4 style="color: #564E4E; font-size: 18px;">
-            {{ product.name }}
-            </h4>
-            
-            <h4 style="color: #C4C4C4; font-size: 14px;">
-            {{ product.category }}
-            </h4>
-            
-            <img src="" alt="Stars">
-            
-            <h4 style="color: #564E4E; font-size: 14px;">
-            ${{ product.price }}
-            </h4>
+            <a href="{% url 'create_order' product.id %}">
+            Add to cart
+            </a>
             
             </div>
             
             {% endfor %}
-            
         </section>
         <section style="padding: 50px 80px; background-color: #F6F6F6; margin: 100px 0px;">
     
