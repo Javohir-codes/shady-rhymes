@@ -30,9 +30,9 @@
                 <a href="#" style="color: white; text-decoration: none; font-size: 18px;">Shop</a>
                 <a href="#" style="color: white; text-decoration: none; font-size: 18px;">About Us</a>
                 <a href="#" style="color: white; text-decoration: none; font-size: 18px;">Contact</a>
-                <a href="/comments/feedback/" style="color: white; text-decoration: none; font-size: 18px;">See all feedback</a>
+                <a href="/comments/feedback/" style="color: white; text-decoration: none; font-size: 18px;">See All Feedback</a>
             </div>
-            <a href="{% url 'create_order' %}">
+            <a href="#">
                 <i class="fa-solid fa-bag-shopping fa-xl" style="color:white;"></i>
             </a>
         </nav>
@@ -194,7 +194,7 @@
         </section>
         <section style="display: flex; justify-content: space-between; align-items: center; margin: 0px 80px;">
             <div>
-                <img src="" alt="room_img">
+                <img src="{% static 'img/shady.png' %}" alt="room_img" style="width: 620px; height: 350px;">
             </div>
             <div>
                 <h3 style="font-size: 36px; color: #564E4E;">Make your room feel homey</h3>
